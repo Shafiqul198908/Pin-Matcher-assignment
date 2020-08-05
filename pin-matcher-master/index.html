@@ -12,37 +12,37 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
-                    <input class="form-control" type="text">
-                    <button class="generate-btn">Generate Pin</button>
+                    <input id="placeRandom" class="form-control" type="text">
+                    <button id="randomTaker" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="text">
+                    <input id="calcDisplay" class="form-control" type="text">
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
-                              <div class="button">7</div>
-                              <div class="button">8</div>
-                              <div class="button">9</div>
+                              <div class="button" onclick="calcDisplay.value +='7'">7</div>
+                              <div class="button" onclick="calcDisplay.value +='8'">8</div>
+                              <div class="button" onclick="calcDisplay.value +='9'">9</div>
                             </div>
                             <div class="calc-button-row">
-                              <div class="button">4</div>
-                              <div class="button">5</div>
-                              <div class="button">6</div>
+                              <div class="button" onclick="calcDisplay.value +='4'">4</div>
+                              <div class="button" onclick="calcDisplay.value +='5'">5</div>
+                              <div class="button" onclick="calcDisplay.value +='6'">6</div>
                             </div>
                             <div class="calc-button-row">
-                              <div class="button">1</div>
-                              <div class="button">2</div>
-                              <div class="button">3</div>
+                              <div class="button" onclick="calcDisplay.value +='1'">1</div>
+                              <div class="button" onclick="calcDisplay.value +='2'">2</div>
+                              <div class="button" onclick="calcDisplay.value +='3'">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button"><</div>
-                                <div class="button">0</div>
-                                <div class="button">C</div>
+                                <div class="button" onclick="calcDisplay.value =' '"><</div>
+                                <div class="button" onclick="calcDisplay.value +='0'">0</div>
+                                <div class="button" onclick="calcDisplay.value =' '">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn">Submit</button>
+                                <button id="submitPin" type="submit" class="submit-btn">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
@@ -50,9 +50,34 @@
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p id="notifyBtnNotMatch" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="notifyBtnMatch" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
+
+    <script>
+        //Generate pin button event handler
+        const randomTaker = document.getElementById('randomTaker');
+        randomTaker.addEventListener('click', function(){
+            const randomNum = Math.random()*10000;
+            const intRandom = Math.round(randomNum);
+
+            document.getElementById('placeRandom').value = intRandom
+        })
+
+        const submitBtn = document.getElementById('submitPin');
+        submitBtn.addEventListener('click', function(){
+            const randomNumber = document.getElementById('placeRandom').innerHTML;
+            const calcDisplayNo = document.getElementById('calcDisplay').innerHTML;
+            if(randomNumber == calcDisplayNo){
+                document.getElementById('notifyBtnMatch').style.display = 'block'
+            }
+            else{
+                document.getElementById('notifyBtnNotMatch').style.display = 'block'
+            }
+              
+     
+        })
+    </script>
 </body>
 </html>
