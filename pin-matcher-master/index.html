@@ -36,8 +36,9 @@
                               <div class="button" onclick="calcDisplay.value +='2'">2</div>
                               <div class="button" onclick="calcDisplay.value +='3'">3</div>
                             </div>
+
                             <div class="calc-button-row">
-                                <div class="button" onclick="calcDisplay.value =' '"><</div>
+                                <div id="backSpace" class="button" onclick="backSpace()"><</div>
                                 <div class="button" onclick="calcDisplay.value +='0'">0</div>
                                 <div class="button" onclick="calcDisplay.value =' '">C</div>
                             </div>
@@ -59,24 +60,30 @@
         //Generate pin button event handler
         const randomTaker = document.getElementById('randomTaker');
         randomTaker.addEventListener('click', function(){
-            const randomNum = Math.random()*10000;
-            const intRandom = Math.round(randomNum);
-
-            document.getElementById('placeRandom').value = intRandom
+            const randomNo = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('placeRandom').value = randomNo
         })
+        //backspace
+        function backSpace(){
+            var value = document.getElementById('backSpace').value;
+            document.getElementById('backSpace').value = value.substr(0, value.length - 1);
 
+        }
+
+        //submit btn event handler
         const submitBtn = document.getElementById('submitPin');
         submitBtn.addEventListener('click', function(){
-            const randomNumber = document.getElementById('placeRandom').innerHTML;
-            const calcDisplayNo = document.getElementById('calcDisplay').innerHTML;
+            const randomNumber = document.getElementById('placeRandom').value;
+            const calcDisplayNo = document.getElementById('calcDisplay').value;
             if(randomNumber == calcDisplayNo){
                 document.getElementById('notifyBtnMatch').style.display = 'block'
+                document.getElementById('notifyBtnNotMatch').style.display = 'none'
             }
+            
             else{
                 document.getElementById('notifyBtnNotMatch').style.display = 'block'
-            }
-              
-     
+                document.getElementById('notifyBtnMatch').style.display = 'none'
+            }     
         })
     </script>
 </body>
