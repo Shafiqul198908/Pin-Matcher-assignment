@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="calc-button-row">
-                                <div id="backSpace" class="button" onclick="backSpace()"><</div>
+                                <div class="button" onclick="BackSpace()"><</div>
                                 <div class="button" onclick="calcDisplay.value +='0'">0</div>
                                 <div class="button" onclick="calcDisplay.value =' '">C</div>
                             </div>
@@ -64,10 +64,10 @@
             document.getElementById('placeRandom').value = randomNo
         })
         //backspace
-        function backSpace(){
-            var value = document.getElementById('backSpace').value;
-            document.getElementById('backSpace').value = value.substr(0, value.length - 1);
-
+        function BackSpace(){
+            const BackNo = document.getElementById('calcDisplay').value;
+            const backNo = BackNo.slice(0, -1);
+            document.getElementById('calcDisplay').value = backNo
         }
 
         //submit btn event handler
